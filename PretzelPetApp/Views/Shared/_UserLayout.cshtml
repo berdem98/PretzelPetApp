@@ -44,6 +44,7 @@
                     <li>
                         <a asp-controller="Category" asp-action="Index" asp-route-id="4"><i class="fa-solid fa-crow"></i>Kuş</a>
                     </li>
+                    
                     <li>
                         <a asp-controller="Category" asp-action="Index" asp-route-id="5"><i class="fa-solid fa-fish"></i>Balık</a>
                     </li>
@@ -57,7 +58,7 @@
                     @if (User.FindFirstValue(ClaimTypes.Role) == "admin")
                     {
                         <li>
-                            <a><i class="fa-solid fa-cart-shopping"></i>Sepetim</a>
+                            <a><i class="fa-solid fa-cart-shopping";"></i>Sepetim</a>
                         </li>
                         <li>
                             <a asp-controller="Admin" asp-action="Index"><i class="fa-solid fa-user"></i>@User.Identity!.Name</a>

@@ -38,10 +38,10 @@ header nav ul li a {
     text-transform: uppercase;
     transition: 0.2s;
 }
-header nav ul li a:hover,
+/*header nav ul li a:hover,
 header nav ul li a.active {
     border-bottom-color: dodgerblue;
-}
+}*/
 
 .login 
 .hamburger {
@@ -122,7 +122,7 @@ nav ul li a {
     border-radius: 5px;
 }
 .pretzelpet:hover{
-    background-color: orange;
+    background-color: blue;
 }
 .login ul{
     font-size: 20px;
@@ -138,11 +138,11 @@ nav ul li a {
     cursor: pointer;
 }
 .login a:hover{
-    background-color: orange;
-    
+    background-color: deepskyblue;
+    transition: 0.5s;
 }
 nav a:hover{
-    background-color:orange;
+    background-color:deepskyblue;
     transition: 0.6s;
 }
 .contents{
@@ -271,6 +271,10 @@ nav a:hover{
     .content2 ul li a{
         font-size:20px;
     }
+    .advantages-img {
+        width: 50px;
+        height: 200px;
+    }
 }
 @media screen and (max-width: 450px){
     
@@ -296,6 +300,10 @@ nav a:hover{
     }
     .home-image {
         width: 200px;
+    }
+    .advantages-img {
+        width: 30px;
+        height: 100px;
     }
     
 }
@@ -367,18 +375,38 @@ body {
 }
 
     .select-arrow select {
-        -webkit-appearance: none;
-        -moz-appearance: none;
-        appearance: none;
-        padding-right: 20px; /* Okun solundan biraz boşluk bırakmak için */
-    }
+     -webkit-appearance: none;
+     -moz-appearance: none;
+     appearance: none;
+     padding-right: 20px; /* Okun solundan biraz boşluk bırakmak için */
+ }
 
-    .select-arrow:after {
-        content: "\25BC"; /* Unicode karakteri, bu ok sembolünü gösterir */
-        font-size: 12px; /* Okun boyutunu ayarlayın */
-        position: absolute;
-        top: 50%;
-        right: 5px;
-        pointer-events: none; /* Okun seçilebilir olmamasını sağlar */
-        transform: translateY(-50%);
-    }
+ .select-arrow:after {
+     content: "\25BC"; /* Unicode karakteri, bu ok sembolünü gösterir */
+     font-size: 12px; /* Okun boyutunu ayarlayın */
+     position: absolute;
+     top: 50%;
+     right: 5px;
+     pointer-events: none; /* Okun seçilebilir olmamasını sağlar */
+     transform: translateY(-50%);
+ }
+ .fa-solid{
+     color:darkorange;
+ }
+.fa-right-from-bracket{
+    color:red;
+}
+.fa-user{
+    color:black;
+}
+.fa-cart-shopping{
+    color:black;
+}
+.card-img-top{
+    width:50px;
+    height:200px;
+}
+.advantages-img {
+    width: 50px;
+    height: 300px;
+}
