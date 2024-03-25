@@ -1,0 +1,57 @@
+﻿@model IEnumerable<Product>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<!-- Sayfa İçeriği -->
+<div class="contents">
+    <!-- İçerik1 -->
+    <div class="content1">
+        <div>
+            <a asp-controller="Category" asp-action="Groom">
+                <img class="home-image" src="~/FrontendProje/img/PetGroom.jpg" alt="">
+                <div class="image-caption">Pet Kuaför</div>
+            </a>
+
+        </div>
+        <div>
+            <a asp-controller="Product" asp-action="Index">
+                <img class="home-image" src="~/FrontendProje/img/PetShop.jpg" alt="">
+                <div class="image-caption">Pet Shop</div>
+            </a>
+
+        </div>
+
+
+    </div>
+    <!-- İçerik2 -->
+    @await Component.InvokeAsync("Last4Product")
+    <!-- İçerik3 -->
+    <div class="content3">
+        <div id="carouselExampleRide" class="carousel slide" data-bs-ride="true">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src="~/FrontendProje/img/PetGroom2.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/FrontendProje/img/PetSpa2.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/FrontendProje/img/PetGroom3.jpg" class="d-block w-100" alt="...">
+                </div>
+                <div class="carousel-item">
+                    <img src="~/FrontendProje/img/PetSpa.jpg" class="d-block w-100" alt="...">
+                </div>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleRide" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+
+    </div>
+</div>

@@ -1,0 +1,24 @@
+﻿@model Product
+
+
+<form asp-controller="Admin" asp-action="Delete" method="post" class="my-5">
+    <input type="hidden" asp-for="ProductId" />
+    <div class="container">
+        <div class="row">
+
+            <div class="col-md-6" style="text-align:center;">
+                <div class="form-group">
+                    <label asp-for="ProductName" class="form-label">@Model.ProductName Silinsin mi?</label>
+                    <br />
+                    <input type="hidden" value="@Model.ProductId" name="id" />
+                    <button type="submit" class="btn btn-danger">Evet</button>
+                    <a asp-controller="Admin" asp-action="Index" class="btn btn-success">Hayır</a>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+</form>

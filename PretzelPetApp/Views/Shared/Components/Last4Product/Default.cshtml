@@ -1,0 +1,15 @@
+﻿@model IEnumerable<Product>
+
+<div class="row">
+    <div class="content2 col-12">
+        <div>
+            <a>    Avantajlı Ürünler    </a>
+        </div>
+        <ul>
+            @foreach (var item in Model)
+            {
+                <li class="col-3"><a asp-controller="Product" asp-action="Details" asp-route-id="@item.ProductId"><img src="@item.Image" alt=""><p>@item.ProductName</p></a></li>
+            }
+        </ul>
+    </div>
+</div>

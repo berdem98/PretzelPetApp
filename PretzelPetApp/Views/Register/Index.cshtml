@@ -1,0 +1,80 @@
+﻿@model Customer
+
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/jquery/dist/jquery.js"></script>
+
+
+
+<section class="main-content-w3layouts-agileits">
+	<div class="container">
+		<h3 class="tittle">Üye Kayıt Sayfası</h3>
+		<div class="inner-sec">
+			<div class="login p-5 bg-light mx-auto mw-100">
+				@using (Html.BeginForm("Index", "Register", FormMethod.Post))
+				{
+					<div class="form-row">
+						<div class="col-md-6 mb-3">
+							<label for="validationCustom01">Adınız</label>
+							@Html.TextBoxFor(x => x.CustomerName, new { @class = "form-control" })
+							@Html.ValidationMessageFor(x => x.CustomerName, "", new { @class = "text-danger" })
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="validationCustom01">Soyadınız</label>
+							@Html.TextBoxFor(x => x.CustomerSurname, new { @class = "form-control" })
+							@Html.ValidationMessageFor(x => x.CustomerSurname, "", new { @class = "text-danger" })
+						</div>
+						<div class="form-row">
+							<div class="form-group col-md-6">
+								<label for="exampleInputPassword1 mb-2">Şifre</label>
+								<div class="input-group">
+									@Html.PasswordFor(x => x.CustomerPassword, new { @class = "form-control", id = "password-input" })
+									<div class="input-group-append">
+										<button class="btn btn-outline-secondary" type="button" id="toggle-password">Göster</button>
+									</div>
+								</div>
+								@Html.ValidationMessageFor(x => x.CustomerPassword, "", new { @class = "text-danger" })
+							</div>
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="validationCustom02">Mail Adresi</label>
+							@Html.TextBoxFor(x => x.CustomerMail, new { @class = "form-control" })
+							@Html.ValidationMessageFor(x => x.CustomerMail, "", new { @class = "text-danger" })
+						</div>
+						<div class="col-md-6 mb-3">
+							<label for="validationCustom02">Adres</label>
+							<textarea id="validationCustom02" name="CustomerAdress" class="form-control"></textarea>
+							@Html.ValidationMessageFor(x => x.CustomerAdress, "", new { @class = "text-danger" })
+						</div>
+
+					</div>
+					
+					<button  type="submit" class="btn btn-primary submit mt-4">Kayıt Ol</button>
+					<p>
+						<a href="#" id="btn1">Tüm şartları okudum, kabul ediyorum.</a>
+					</p>
+				}
+
+
+			</div>
+		</div>
+	</div>
+	<script>
+		$('#btn1').click(function () {
+			swal("Site Kabul Şartları","Sitemizde verdiğiniz mail adresi üzerinden bilgi ve haber e-postaları spam ölçüsüne varmadan gönderilmeye devam edilecektir. Eğer e-posta bülteninden çıkmak isterseniz mail ileti dizisini durdurabilirsini, şifre ve mail adresleriniz şifrelenmiş formatta herhangi bir kullanıcının görmeyeceği şekilde veri tabanlarımızda saklanmaktadır.");
+		});
+	</script>
+
+	<script>
+		var togglePassword = document.getElementById('toggle-password');
+		var passwordInput = document.getElementById('password-input');
+
+		togglePassword.addEventListener('click', function (e) {
+			var type = passwordInput.getAttribute('type') === 'password' ? 'text' : 'password';
+			passwordInput.setAttribute('type', type);
+			this.textContent = type === 'password' ? 'Göster' : 'Gizle';
+		});
+	</script>
+</section>
+

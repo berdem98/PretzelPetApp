@@ -1,0 +1,29 @@
+﻿@using PretzelPetApp.Helpers
+@model IEnumerable<Product>
+
+<div class="row">
+    @foreach (var item in Model)
+    {
+        <div class="card m-2" style="width: 18rem;">
+            <img src="@item.Image" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title">@item.ProductName</h5>
+                <p class="card-text">@Kısalt.MakeShorter(item.Description!, 30)</p>
+            </div>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">@item.Price₺</li>
+                @* <li class="list-group-item">@item.CategoryName</li> *@
+                @* <li class="list-group-item">Vestibulum at eros</li> *@
+            </ul>
+            <div class="card-body">
+                <btn type="submit" class="btn btn-primary">Sepete Ekle</btn>
+                <a href="/Product/Details/@item.ProductId"><btn type="button" class="btn btn-success">Ürüne Git</btn></a>
+            </div>
+        </div>
+    }
+
+</div>
+
+
+
+

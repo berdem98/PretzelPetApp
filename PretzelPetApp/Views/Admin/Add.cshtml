@@ -1,0 +1,48 @@
+﻿@model Product
+
+<form asp-controller="Admin" asp-action="Add" method="post" class="my-5">
+    <div class="container">
+        <div class="row">
+            
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="ProductName" class="form-label">Ürün Adı</label>
+                    <input asp-for="ProductName" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Price" class="form-label">Fiyat</label>
+                    <input asp-for="Price" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label asp-for="Stock" class="form-label">Stok</label>
+                    <input asp-for="Stock" class="form-control" required />
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label asp-for="Description" class="form-label">Açıklama</label>
+                    <textarea asp-for="Description" class="form-control"></textarea>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Image" class="form-label">Resim URL</label>
+                    <input asp-for="Image" class="form-control" required />
+                </div>
+                <div class="form-group">
+                    <label asp-for="CategoryId" class="form-label">Kategori</label>
+                    <div class="input-group">
+                        <select asp-for="CategoryId" class="form-control" asp-items="@ViewBag.Categories">
+                            <option value="">Seçiniz</option>
+
+                        </select>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button type="submit" class="btn btn-primary">Ekle</button>
+            </div>
+        </div>
+    </div>
+</form>

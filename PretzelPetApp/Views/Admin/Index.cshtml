@@ -1,0 +1,36 @@
+﻿@model IEnumerable<Product>
+
+
+<div class="mt-5">
+    <h1>Admin Paneli</h1>
+    <a asp-controller="Admin" asp-action="Add" class="btn btn-success mt-2">Yeni Ürün Kaydet</a>
+    <table class="table">
+        <thead>
+        <th>Id</th>
+        <th>Ürün Adı</th>
+        <th>Fiyatı</th>
+        <th>Stok</th>
+        <th>Kategori Id</th>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductId</td>
+                    <td>@item.ProductName</td>
+                    <td>@item.Price</td>
+                    <td>@item.Stock</td>
+                    <td>@item.CategoryId</td>
+                    <td>
+                        <a asp-controller="Admin" asp-action="Delete" asp-route-id="@item.ProductId" class="btn btn-danger">Sil</a>
+                        <a asp-controller="Admin" asp-action="Update" asp-route-id="@item.ProductId" class="btn btn-primary">Güncelle</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    
+</div>
+
+
+
