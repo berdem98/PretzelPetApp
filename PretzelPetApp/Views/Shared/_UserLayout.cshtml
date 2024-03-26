@@ -58,7 +58,7 @@
                     @if (User.FindFirstValue(ClaimTypes.Role) == "admin")
                     {
                         <li>
-                            <a><i class="fa-solid fa-cart-shopping";"></i>Sepetim</a>
+                            <a asp-controller ="Cart" asp-action="Index"><i class="fa-solid fa-cart-shopping" ;"></i>Sepetim</a>
                         </li>
                         <li>
                             <a asp-controller="Admin" asp-action="Index"><i class="fa-solid fa-user"></i>@User.Identity!.Name</a>

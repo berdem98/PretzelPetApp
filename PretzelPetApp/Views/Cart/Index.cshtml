@@ -1,0 +1,43 @@
+﻿@model Cart
+
+
+<div class="mt-5">
+    <h2>Sepetim</h2>
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="width:80px;"></th>
+                            <th>Ürün Adı</th>
+                            <th>Adet</th>
+                            <th>Fiyat</th>
+                            <th>Toplam Fiyat</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.CartLines)
+                        {
+                            <tr>
+                                <td>
+                                    <img style="width:60px;" src="@item.Product.Image"/>
+                                    </td>
+                                <td>@item.Product.ProductName</td>
+                                <td>@item.Quantity</td>
+                                <td>₺@item.Product.Price</td>
+                                <td>₺@(item.Product.Price * item.Quantity)</td>
+                            </tr>
+                        }
+                        
+                    </tbody>
+                    <tfoot>
+                        <td colspan="4"></td>
+                        <td>@Model.Total().ToString("c")</td>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

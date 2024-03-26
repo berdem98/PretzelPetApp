@@ -1,6 +1,11 @@
 ﻿@model Product
 
-
+<div class="mt-5">
+    <a asp-action="index" class="btn btn-success">Panele Dön</a>
+</div>
+<div class="mt-3">
+    <h1>Ürünü Sil</h1>
+</div>
 <form asp-controller="Admin" asp-action="Delete" method="post" class="my-5">
     <input type="hidden" asp-for="ProductId" />
     <div class="container">

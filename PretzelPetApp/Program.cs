@@ -6,17 +6,25 @@ using Microsoft.EntityFrameworkCore;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
+builder.Services.AddSession(options =>
+{
+    options.IdleTimeout = TimeSpan.FromMinutes(30); // Oturumun ne kadar süre boyunca boþta kalabileceðini belirler.
+    options.Cookie.HttpOnly = true;
+    options.Cookie.IsEssential = true;
+});
 builder.Services.AddControllersWithViews();
+
 
 ////Authentication**************
 
 builder.Services.AddMvc(config =>
 {
 	var policy = new AuthorizationPolicyBuilder()
-	.RequireAuthenticatedUser()
+	.RequireAuthenticatedUser() 
 	.Build();
-	config.Filters.Add(new AuthorizeFilter(policy));
+	config.Filters.Add(new AuthorizeFilter(policy)); 
 });
+
 
 builder.Services.AddMvc();
 builder.Services.AddAuthentication(
@@ -27,6 +35,8 @@ builder.Services.AddAuthentication(
     }
     );
 //Authentication**************
+
+
 
 
 var app = builder.Build();
@@ -44,8 +54,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+
 app.UseAuthentication();
 app.UseAuthorization();
+
+app.UseSession();
 
 app.MapControllerRoute(
     name: "default",
