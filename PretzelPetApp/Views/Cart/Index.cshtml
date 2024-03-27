@@ -7,36 +7,56 @@
     <div class="container">
         <div class="row">
             <div class="col-md-12">
-                <table class="table table-bordered">
-                    <thead>
-                        <tr>
-                            <th style="width:80px;"></th>
-                            <th>Ürün Adı</th>
-                            <th>Adet</th>
-                            <th>Fiyat</th>
-                            <th>Toplam Fiyat</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model.CartLines)
-                        {
+                @if (Model.CartLines.Count > 0)
+                {
+                    <table class="table table-bordered">
+                        <thead>
                             <tr>
-                                <td>
-                                    <img style="width:60px;" src="@item.Product.Image"/>
-                                    </td>
-                                <td>@item.Product.ProductName</td>
-                                <td>@item.Quantity</td>
-                                <td>₺@item.Product.Price</td>
-                                <td>₺@(item.Product.Price * item.Quantity)</td>
+                                <th style="width:80px;"></th>
+                                <th>Ürün Adı</th>
+                                <th>Adet</th>
+                                <th>Fiyat</th>
+                                <th>Toplam Fiyat</th>
                             </tr>
-                        }
-                        
-                    </tbody>
-                    <tfoot>
+                        </thead>
+                        <tbody>
+                            @foreach (var item in Model.CartLines)
+                            {
+                                <tr>
+                                    <td>
+                                        <a asp-controller="Product" asp-action="Details" asp-route-id="@item.Product.ProductId"><img style="width:60px;" src="@item.Product.Image" /></a>
+                                    </td>
+                                    <td><a asp-controller="Product" asp-action="Details" asp-route-id="@item.Product.ProductId">@item.Product.ProductName</a></td>
+                                    <td>@item.Quantity</td>
+                                    <td>₺@item.Product.Price</td>
+                                    <td>₺@(item.Product.Price * item.Quantity)</td>
+                                    <td style="width:80px;">
+                                        @using (Html.BeginForm("RemoveFromCart", "Cart"))
+                                        {
+                                            @Html.Hidden("id", item.Product.ProductId)
+                                            <button type="submit" class="btn btn-sm btn-outline-danger"><i style="color:red;" class="fa-solid fa-trash"></i>Sil</button>
+                                        }
+                                    </td>
+                                    
+                                </tr>
+                            }
+
+                        </tbody>
+                        <tfoot>
                         <td colspan="4"></td>
-                        <td>@Model.Total().ToString("c")</td>
-                    </tfoot>
-                </table>
+                        <td>₺@Model.Total()</td> 
+                        </tfoot>
+                    </table>
+                    <a asp-controller="Product" asp-action="Index" class="btn btn-primary"><i class="fa-solid fa-backward"></i> Alışverişe Devam Et</a>
+                    <a href="#" class="btn btn-success">Alışverişi Tamamla <i class="fa-solid fa-check"></i></a>
+                }
+                else
+                {
+                    <div class="alert alert-warning" role="alert">
+                        <i class="fa-solid fa-triangle-exclamation"></i> Alışveriş Sepetinizde Ürün Bulunmamaktadır
+                    </div>
+                }
+
             </div>
         </div>
     </div>

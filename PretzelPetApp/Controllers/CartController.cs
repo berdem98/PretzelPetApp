@@ -4,6 +4,7 @@ using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using System.Security.Claims;
 using System.Text.Json;
 
 
@@ -15,18 +16,21 @@ namespace PretzelPetApp.Controllers
 
         public IActionResult Index()
         {
-            return View(GetCart());
+            var customerId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)); // Oturum açmış kullanıcının ID'sini al
+            var cart = GetCart(customerId);
+            return View(cart);
         }
-        
+
         [HttpPost]
         public IActionResult AddToCart(int id)
         {
             var product = pm.GetById(id);
             if (product != null)
             {
-                var cart = GetCart();
+                var customerId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)); // Oturum açmış kullanıcının ID'sini al
+                var cart = GetCart(customerId);
                 cart.AddProduct(product, 1);
-                HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
+                SaveOrUpdateCart(cart, customerId); // Sepeti kaydet veya güncelle
             }
             return RedirectToAction("Index");
         }
@@ -36,21 +40,29 @@ namespace PretzelPetApp.Controllers
             var product = pm.GetById(id);
             if (product != null)
             {
-                var cart = GetCart();
+                var customerId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)); // Oturum açmış kullanıcının ID'sini al
+                var cart = GetCart(customerId);
                 cart.DeleteProduct(product);
-                HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
+                SaveOrUpdateCart(cart, customerId); // Sepeti kaydet veya güncelle
             }
             return RedirectToAction("Index");
         }
-        public Cart GetCart()
+
+        public PartialViewResult Summary()
         {
-            var cartData = HttpContext.Session.GetString("Cart");
+            var customerId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)); // Oturum açmış kullanıcının ID'sini al
+            var cart = GetCart(customerId);
+            return PartialView(cart);
+        }
+
+        private Cart GetCart(int customerId)
+        {
+            var cartData = HttpContext.Session.GetString($"Cart_{customerId}"); // Kullanıcıya özgü sepet verilerini al
             Cart cart;
 
             if (cartData == null)
             {
                 cart = new Cart();
-                HttpContext.Session.SetString("Cart", JsonConvert.SerializeObject(cart));
             }
             else
             {
@@ -59,6 +71,14 @@ namespace PretzelPetApp.Controllers
 
             return cart;
         }
+
+        private void SaveOrUpdateCart(Cart cart, int customerId)
+        {
+            HttpContext.Session.SetString($"Cart_{customerId}", JsonConvert.SerializeObject(cart)); // Kullanıcıya özgü sepet verilerini sakla
+        }
+
+
+
 
     }
     

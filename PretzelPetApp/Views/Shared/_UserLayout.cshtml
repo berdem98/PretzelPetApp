@@ -1,5 +1,4 @@
 ﻿@using System.Security.Claims
-
 @{
     Layout = null;
 }
@@ -55,10 +54,11 @@
             </nav>
             <div class="login">
                 <ul>
+                    
                     @if (User.FindFirstValue(ClaimTypes.Role) == "admin")
                     {
                         <li>
-                            <a asp-controller ="Cart" asp-action="Index"><i class="fa-solid fa-cart-shopping" ;"></i>Sepetim</a>
+                            <a asp-controller ="Cart" asp-action="Index"><i class="fa-solid fa-cart-shopping"></i>Sepetim</a>
                         </li>
                         <li>
                             <a asp-controller="Admin" asp-action="Index"><i class="fa-solid fa-user"></i>@User.Identity!.Name</a>
@@ -70,8 +70,10 @@
                     else{
                     @if (User.Identity!.IsAuthenticated)
                     {
+                        
                         <li>
-                            <a><i class="fa-solid fa-cart-shopping"></i>Sepetim</a>
+
+                                <a asp-controller="Cart" asp-action="Index"><i class="fa-solid fa-cart-shopping"></i>Sepetim</a>
                         </li>
                         <li>
                             <a href="#"><i class="fa-solid fa-user"></i>@User.Identity.Name</a>

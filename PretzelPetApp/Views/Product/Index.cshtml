@@ -6,7 +6,7 @@
 
 
 
-<div class="row">
+<div class="row mt-5">
     @foreach (var item in Model)
     {
         <div class="card m-2" style="width: 18rem;">
@@ -20,13 +20,21 @@
                 @* <li class="list-group-item">@item.CategoryName</li> *@
                 @* <li class="list-group-item">Vestibulum at eros</li> *@
             </ul>
-            <div class="card-body">
-                <btn type="button" class="btn btn-primary">Sepete Ekle</btn>
+            <div class="row card-body">
+                <div class="col-6">
+                    @using (Html.BeginForm("AddToCart", "Cart"))
+                    {
+                        <input type="hidden" name="id" value="@item.ProductId">
+                        <button type="submit" class="btn btn-primary">Sepete Ekle</button>
+                    }
+                </div>
+            <div class="col-6">
                 <a href="/Product/Details/@item.ProductId"><btn type="button" class="btn btn-success">Ürüne Git</btn></a>
+            </div>
+               
             </div>
         </div>
     }
 
 </div>
-
 

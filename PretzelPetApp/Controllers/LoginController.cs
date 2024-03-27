@@ -56,30 +56,10 @@ namespace PretzelPetApp.Controllers
 		}
         public async Task<IActionResult> Logout()
         {
+            
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
             return RedirectToAction("Index","Login");
         }
     }
 }
 
-//public async Task<IActionResult> Index(Customer p)
-//{
-//    Context c = new Context();
-//    var datavalue = c.Customers.FirstOrDefault(x => x.CustomerMail == p.CustomerMail && x.CustomerPassword == p.CustomerPassword);
-//    if (datavalue != null)
-//    {
-//        var claims = new List<Claim>
-//                {
-//                    new Claim(ClaimTypes.Name,p.CustomerMail)
-//                };
-//        var useridentity = new ClaimsIdentity(claims, "a");
-//        ClaimsPrincipal principal = new ClaimsPrincipal(useridentity);
-//        await HttpContext.SignInAsync(principal);
-//        return RedirectToAction("Index", "Product");
-//    }
-//    else
-//    {
-//        return View();
-//    }
-
-//}
