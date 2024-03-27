@@ -1,10 +1,5 @@
-﻿
-@using PretzelPetApp.Helpers
+﻿@using PretzelPetApp.Helpers
 @model IEnumerable<Product>
-
-
-
-
 
 <div class="row mt-5">
     @foreach (var item in Model)
@@ -17,24 +12,33 @@
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">@item.Price₺</li>
-                @* <li class="list-group-item">@item.CategoryName</li> *@
-                @* <li class="list-group-item">Vestibulum at eros</li> *@
             </ul>
-            <div class="row card-body">
-                <div class="col-6">
-                    @using (Html.BeginForm("AddToCart", "Cart"))
+
+
+            @using (Html.BeginForm("AddToCart", "Cart"))
+            {
+                <label for="quantity_@item.ProductId">Miktar:</label>
+                <select class="form-control mb-1" name="quantity" id="quantity_@item.ProductId">
+                    @for (var i = 1; i <= 10; i++)
                     {
-                        <input type="hidden" name="id" value="@item.ProductId">
-                        <button type="submit" class="btn btn-primary">Sepete Ekle</button>
+                        <option value="@i">@i</option>
                     }
+                </select>
+                <input type="hidden" name="id" value="@item.ProductId">
+                <div class="form-group">
                 </div>
-            <div class="col-6">
-                <a href="/Product/Details/@item.ProductId"><btn type="button" class="btn btn-success">Ürüne Git</btn></a>
-            </div>
-               
-            </div>
+                <div class="row card-body">
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-primary">Sepete Ekle</button>
+                    </div>
+                    <div class="col-6">
+                        <a href="/Product/Details/@item.ProductId" class="btn btn-success">Ürüne Git</a>
+                    </div>
+                </div>
+            }
+
+
+
         </div>
     }
-
 </div>
-

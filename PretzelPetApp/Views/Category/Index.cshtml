@@ -5,34 +5,40 @@
     @foreach (var item in Model)
     {
         <div class="card m-2" style="width: 18rem;">
-            <img src="@item.Image" class="card-img-top" alt="...">
+            <img href="/Product/Details/@item.ProductId" src="@item.Image" class="card-img-top" alt="...">
             <div class="card-body">
                 <h5 class="card-title">@item.ProductName</h5>
                 <p class="card-text">@Kısalt.MakeShorter(item.Description!, 30)</p>
             </div>
             <ul class="list-group list-group-flush">
                 <li class="list-group-item">@item.Price₺</li>
-                @* <li class="list-group-item">@item.CategoryName</li> *@
-                @* <li class="list-group-item">Vestibulum at eros</li> *@
             </ul>
-            <div class="row card-body">
-                <div class="col-6">
-                    @using (Html.BeginForm("AddToCart", "Cart"))
-                    {
-                        <input type="hidden" name="id" value="@item.ProductId">
-                        <button type="submit" class="btn btn-primary">Sepete Ekle</button>
-                    }
-                </div>
-                <div class="col-6">
-                    <a href="/Product/Details/@item.ProductId"><btn type="button" class="btn btn-success">Ürüne Git</btn></a>
-                </div>
 
-            </div>
+
+            @using (Html.BeginForm("AddToCart", "Cart"))
+            {
+                <label for="quantity_@item.ProductId">Miktar:</label>
+                <select class="form-control mb-1" name="quantity" id="quantity_@item.ProductId">
+                    @for (var i = 1; i <= 10; i++)
+                    {
+                        <option value="@i">@i</option>
+                    }
+                </select>
+                <input type="hidden" name="id" value="@item.ProductId">
+                <div class="form-group">
+                </div>
+                <div class="row card-body">
+                    <div class="col-6">
+                        <button type="submit" class="btn btn-primary">Sepete Ekle</button>
+                    </div>
+                    <div class="col-6">
+                        <a href="/Product/Details/@item.ProductId" class="btn btn-success">Ürüne Git</a>
+                    </div>
+                </div>
+            }
+
+
+
         </div>
     }
-
 </div>
-
-
-
-
