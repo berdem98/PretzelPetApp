@@ -1,7 +1,6 @@
 ﻿@using System.Security.Claims
-@{
-    Layout = null;
-}
+
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -57,9 +56,15 @@
                     
                     @if (User.FindFirstValue(ClaimTypes.Role) == "admin")
                     {
+                     
+                        
+                        Console.WriteLine(User.FindFirstValue(ClaimTypes.UserData ));
+                        
+
                         <li>
-                            <a asp-controller ="Cart" asp-action="Index"><i class="fa-solid fa-cart-shopping"></i>Sepetim</a>
+                            <a asp-controller="Cart" asp-action="Index"><i class="fa-solid fa-cart-shopping"></i>Sepetim(@ViewBag.SepetMiktari)</a>
                         </li>
+                       
                         <li>
                             <a asp-controller="Admin" asp-action="Index"><i class="fa-solid fa-user"></i>@User.Identity!.Name</a>
                         </li>

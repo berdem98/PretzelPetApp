@@ -10,6 +10,7 @@ namespace EntityLayer.Concrete
     public class ShippingDetails
     {
         public int CustomerId { get; set; }
+        [Required(ErrorMessage = "Lütfen Ad Soyad bilgisini giriniz.")]
         public string? FullName { get; set; }
         [Required(ErrorMessage ="Lütfen adres başlığını giriniz.")]
         public string? AdressHeader { get; set; }

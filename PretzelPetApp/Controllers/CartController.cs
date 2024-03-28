@@ -13,7 +13,7 @@ using System.Text.Json;
 
 namespace PretzelPetApp.Controllers
 {
-    
+
     public class CartController : Controller
     {
         ProductManager pm = new ProductManager(new EfProductRepository());
@@ -22,6 +22,9 @@ namespace PretzelPetApp.Controllers
         {
             var customerId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier)); // Oturum açmış kullanıcının ID'sini al
             var cart = GetCart(customerId);
+
+            ViewBag.SepetMiktari = cart.CartLines.Count(); 
+
             return View(cart);
         }
 
@@ -35,6 +38,7 @@ namespace PretzelPetApp.Controllers
                 var cart = GetCart(customerId);
                 cart.AddProduct(product, quantity); // Quantity'yi de parametre olarak ekleyin
                 SaveOrUpdateCart(cart, customerId); // Sepeti kaydet veya güncelle
+
             }
             return RedirectToAction("Index");
         }
@@ -108,7 +112,7 @@ namespace PretzelPetApp.Controllers
                 return View(shippingDetails);
             }
 
-            
+
         }
 
         private void SaveOrder(Cart cart, ShippingDetails shippingDetails)
@@ -118,31 +122,31 @@ namespace PretzelPetApp.Controllers
             var customerId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
             order.CustomerId = customerId;
-            order.OrderNumber ="A"+(new Random()).Next(111111, 999999).ToString();
+            order.OrderNumber = "A" + (new Random()).Next(111111, 999999).ToString();
             order.Total = cart.Total();
             order.OrderDate = DateTime.Now;
             order.OrderState = EnumOrderState.Beklemede;
 
             order.FullName = shippingDetails.FullName;
             order.AdressHeader = shippingDetails.AdressHeader;
-            order.Adress=shippingDetails.Adress;
+            order.Adress = shippingDetails.Adress;
             order.City = shippingDetails.City;
-            order.District= shippingDetails.District;
+            order.District = shippingDetails.District;
             order.PostCode = shippingDetails.PostCode;
             order.OrderLines = new List<OrderLine>();
-            
+
             foreach (var product in cart.CartLines)
             {
                 var orderline = new OrderLine();
                 orderline.Quantity = product.Quantity;
-                orderline.Price =product.Quantity*product.Product.Price;
-                orderline.ProductId=product.Product.ProductId;
-                
+                orderline.Price = product.Quantity * product.Product.Price;
+                orderline.ProductId = product.Product.ProductId;
+
                 order.OrderLines.Add(orderline);
             }
             c.Orders.Add(order);
             c.SaveChanges();
-            
+
         }
     }
 

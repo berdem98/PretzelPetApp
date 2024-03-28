@@ -8,8 +8,8 @@ namespace EntityLayer.Concrete
 {
     public class Cart 
     {
-        private List<CartLine> _cartLines = new List<CartLine>();
-        public List<CartLine> CartLines
+        private  List<CartLine> _cartLines = new List<CartLine>();
+        public  List<CartLine> CartLines
         {
             get { return _cartLines; }
         }
