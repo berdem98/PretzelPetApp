@@ -1,0 +1,39 @@
+﻿@using EntityLayer.Models
+@model IEnumerable<AdminOrderModel>
+
+
+<div class="container mt-5">
+    <a asp-controller="Admin" asp-action="Index" class="btn btn-primary">Admin Paneline Dön</a>
+    <h2>Siparişler</h2>
+    <hr />
+    <table class="table table-bordered table-striped">
+        <thead>
+            <tr>
+                <th>Sipariş Id</th>
+                <th>Sipariş Numarası</th>
+                <th>Sipariş Tarihi</th>
+                <th>Sipariş Durumu</th>
+                <th>Adet</th>
+                <th>Toplam Tutar</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.OrderId</td>
+                    <td>@item.OrderNumber</td>
+                    <td>@item.OrderDate</td>
+                    <td>@item.OrderState</td>
+                    <td>@item.Count</td>
+                    <td>@item.Total</td>
+                    <td><a asp-controller="Order" asp-action="Details" asp-route-id="@item.OrderId" class="btn btn-primary">Detay</a></td>
+                </tr>
+            }
+
+        </tbody>
+
+    </table>
+</div>

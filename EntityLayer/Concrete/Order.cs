@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EntityLayer.Models;
 
 namespace EntityLayer.Concrete
 {
@@ -13,11 +14,12 @@ namespace EntityLayer.Concrete
         public string? OrderNumber { get; set; }
         public decimal Total { get; set; }
         public DateTime OrderDate { get; set; }
+        public EnumOrderState OrderState { get; set; }
 
-        public List<OrderLine> OrderLines { get; set; }
+        public virtual List<OrderLine> OrderLines { get; set; }
 
 
-
+        public int CustomerId { get; set; }
         public string? FullName { get; set; }       
         public string? AdressHeader { get; set; }       
         public string? Adress { get; set; }       

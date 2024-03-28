@@ -9,6 +9,7 @@ namespace EntityLayer.Concrete
 {
     public class ShippingDetails
     {
+        public int CustomerId { get; set; }
         public string? FullName { get; set; }
         [Required(ErrorMessage ="Lütfen adres başlığını giriniz.")]
         public string? AdressHeader { get; set; }

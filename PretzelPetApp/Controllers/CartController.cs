@@ -2,6 +2,8 @@
 using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using EntityLayer.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
@@ -11,6 +13,7 @@ using System.Text.Json;
 
 namespace PretzelPetApp.Controllers
 {
+    
     public class CartController : Controller
     {
         ProductManager pm = new ProductManager(new EfProductRepository());
@@ -112,10 +115,14 @@ namespace PretzelPetApp.Controllers
         {
             using var c = new Context();
             var order = new Order();
+            var customerId = int.Parse(User.FindFirstValue(ClaimTypes.NameIdentifier));
 
+            order.CustomerId = customerId;
             order.OrderNumber ="A"+(new Random()).Next(111111, 999999).ToString();
             order.Total = cart.Total();
             order.OrderDate = DateTime.Now;
+            order.OrderState = EnumOrderState.Beklemede;
+
             order.FullName = shippingDetails.FullName;
             order.AdressHeader = shippingDetails.AdressHeader;
             order.Adress=shippingDetails.Adress;

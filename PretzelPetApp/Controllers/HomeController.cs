@@ -1,6 +1,7 @@
 ﻿using BusinessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using PretzelPetApp.Models;
 using System.Diagnostics;
@@ -8,7 +9,7 @@ using System.Diagnostics;
 namespace PretzelPetApp.Controllers
 {
 
-
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         ProductManager pm = new ProductManager(new EfProductRepository());

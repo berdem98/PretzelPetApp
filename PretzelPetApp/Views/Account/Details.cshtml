@@ -1,0 +1,78 @@
+﻿@using EntityLayer.Models
+@model OrderDetailsModel
+
+
+
+<div class="container mt-5">
+
+    <div class="row">
+        <div class="col-sm-12">
+            <table class="table table-borderless">
+                <tbody>
+                    <tr>
+                        <td><strong>Sipariş Numarası:</strong> @Model.OrderNumber</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sipariş Tarihi:</strong>@Model.OrderDate.ToShortDateString()</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sipariş Tarihi:</strong> @Model.Adress</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Sipariş Tarihi:</strong> @Model.City</td>
+                    </tr>
+                    <tr>
+                        <strong>Sipariş Durumu:</strong> @if (Model.OrderState == EnumOrderState.Beklemede)
+                        {
+                            <span class="text-danger">@Model.OrderState</span>
+                        }
+                        else
+                        {
+                            <span class="text-success">@Model.OrderState</span>
+                        }
+                    </tr>
+                    
+                </tbody>
+            </table>
+            <hr />
+        </div>
+    </div>
+
+    
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Sipariş Detayı</h2>
+            <hr />
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Ürün Görseli</th>
+                        <th>Ürün Adı</th>
+                        <th>Adet</th>
+                        <th>Fiyat</th>
+                        <th>Toplam</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.OrderLines)
+                    {
+                        <tr>
+                            <td><img src="@item.Image" style="width:50px;" /></td>
+                            <td>@item.ProductName</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.Price₺</td>
+                            <td>@(item.Quantity * item.Price)₺</td>
+                            <td><a asp-controller="Product" asp-action="Details" asp-route-id="@item.ProductId" class="btn btn-sm-success" target="_blank">Ürüne Detay</a></td>
+                        </tr>
+                    }
+                </tbody>
+
+            </table>
+
+
+
+        </div>
+    </div>
+</div>

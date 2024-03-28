@@ -1,11 +1,26 @@
 ﻿@model ShippingDetails
 
 <style>
-    .field-validation-error{color: #f00;}
-    .field-validation-valid{display:none;}
-    .input-validation-error{border: 1px solid #f00;}
-    .validation-summary-errors{font-weight:bold; color:#f00;}
-    .validation-summary-valid{display:none;}
+    .field-validation-error {
+        color: #f00;
+    }
+
+    .field-validation-valid {
+        display: none;
+    }
+
+    .input-validation-error {
+        border: 1px solid #f00;
+    }
+
+    .validation-summary-errors {
+        font-weight: bold;
+        color: #f00;
+    }
+
+    .validation-summary-valid {
+        display: none;
+    }
 </style>
 
 
@@ -18,6 +33,7 @@
             @using (Html.BeginForm())
             {
                 @Html.ValidationSummary()
+                @Html.HiddenFor(x => x.CustomerId)
                 <div class="form-group row">
                     <label for="inputEmail3" class="col-sm-2 col-form-label">Ad Soyad</label>
                     <div class="col-sm-6">
@@ -60,7 +76,7 @@
                         <button type="submit" class="btn btn-primary">Kaydet</button>
                     </div>
                 </div>
-                
+
             }
         </div>
     </div>

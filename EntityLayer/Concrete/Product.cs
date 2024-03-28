@@ -15,7 +15,7 @@ namespace EntityLayer.Concrete
         [Required(ErrorMessage ="Fiyat gereklidir.")]
 		public decimal Price { get; set; }
         [Required(ErrorMessage = "Stok bilgisi gereklidir.")]
-        public int Quantity { get; set; }
+        
         public int Stock { get; set; }
         [Required(ErrorMessage = "Açıklama gereklidir.")]
         public string? Description { get; set; }

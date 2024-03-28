@@ -1,4 +1,7 @@
-﻿namespace PretzelPetApp.Helpers
+﻿using System.ComponentModel.DataAnnotations;
+using System.Reflection;
+
+namespace PretzelPetApp.Helpers
 {
     public static class Kısalt
     {
@@ -14,5 +17,6 @@
             }
         }
         
+
     }
 }

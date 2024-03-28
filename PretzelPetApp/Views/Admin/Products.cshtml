@@ -1,0 +1,84 @@
+﻿@model IEnumerable<Product>
+
+
+<div class="mt-5">
+    <a asp-controller="Admin" asp-action="Index" class="btn btn-primary mb-3">Admin Paneline Dön</a>
+    <h1>Ürünler</h1>
+    <a asp-controller="Admin" asp-action="Add" class="btn btn-success mt-2">Yeni Ürün Kaydet</a>
+    <table class="table">
+        <thead>
+        <th>Id</th>
+        <th>Ürün Adı</th>
+        <th>Fiyatı</th>
+        <th>Stok</th>
+        <th>Kategori Id</th>
+        </thead>
+        <tbody>
+            @* ARAMA *@
+            <div class="container mt-5">
+                <div class="row justify-content-center">
+                    <div class="col-md-6">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title text-center mb-4">Ürün Arama</h5>
+                                <form class="needs-validation" asp-controller="Admin" asp-action="Index" method="get" novalidate>
+                                    <div class="mb-3">
+                                        <label for="ProductName" class="form-label">Ürün Adı:</label>
+                                        <input type="text" class="form-control" id="ProductName" name="ProductName" required>
+                                        <div class="invalid-feedback">Lütfen bir ürün adı girin.</div>
+                                    </div>
+                                    <div class="mb-3">
+                                        <label for="CategoryId" class="form-label">Kategori Seç:</label>
+                                        <select class="form-control" id="CategoryId" name="CategoryId">
+                                            <option value="">Tüm Kategoriler</option>
+                                            @foreach (var category in ViewBag.Categories)
+                                            {
+                                                <option value="@category.CategoryId">@category.CategoryName</option>
+                                            }
+                                        </select>
+                                    </div>
+                                    <div class="text-center">
+                                        <button type="submit" class="btn btn-primary">Ara</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            @* ARAMA SON *@
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.ProductId</td>
+                    <td>@item.ProductName</td>
+                    <td>@item.Price</td>
+                    <td>@item.Stock</td>
+                    <td>@item.CategoryId</td>
+                    <td>
+                        <a asp-controller="Admin" asp-action="Delete" asp-route-id="@item.ProductId" class="btn btn-danger">Sil</a>
+                        <a asp-controller="Admin" asp-action="Update" asp-route-id="@item.ProductId" class="btn btn-primary">Güncelle</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
+
+
+
+<script>
+    // Sayfa yüklendiğinde çalışacak olan fonksiyon
+    document.addEventListener("DOMContentLoaded", function () {
+        // URL'den parametreleri al
+        const urlParams = new URLSearchParams(window.location.search);
+        // URL'den "CategoryId" parametresini al
+        const categoryId = urlParams.get('CategoryId');
+        // Eğer categoryId değeri varsa
+        if (categoryId) {
+            // Kategoriyi seçili hale getir
+            document.getElementById('CategoryId').value = categoryId;
+        }
+    });
+</script>

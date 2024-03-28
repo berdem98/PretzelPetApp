@@ -76,7 +76,7 @@
                                 <a asp-controller="Cart" asp-action="Index"><i class="fa-solid fa-cart-shopping"></i>Sepetim</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa-solid fa-user"></i>@User.Identity.Name</a>
+                            <a asp-controller="Account" asp-action="Index"><i class="fa-solid fa-user"></i>@User.Identity.Name</a>
                         </li>
                         <li>
                             <a asp-controller="Login" asp-action="Logout"><i class="fa-solid fa-right-from-bracket"></i>Çıkış</a>

@@ -1,0 +1,35 @@
+﻿@model IEnumerable<CustomerOrderModel>
+
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-md-12">
+            <h2>Sipariş Bilgileriniz</h2>
+            <hr />
+
+            <table class="table table-bordered table-striped">
+                <thead>
+                    <tr>
+                        <th>Sipariş Numarası</th>
+                        <th>Sipariş Tarihi</th>
+                        <th>Tutar</th>
+                        <th>Durum</th>
+                        <th>Detay</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.OrderNumber</td>
+                            <td>@item.OrderDate.ToShortDateString()</td>
+                            <td>@item.Total₺</td>
+                            <td>@item.OrderState</td>
+                            <td>@Html.ActionLink("Detay","Details", new{id=item.OrderId},new{@class="btn btn-primary"})</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
