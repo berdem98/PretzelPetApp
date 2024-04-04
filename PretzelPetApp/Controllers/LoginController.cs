@@ -17,7 +17,11 @@ namespace PretzelPetApp.Controllers
             {
                 return View();
             }
-			return RedirectToAction("Index","Home");
+            else
+            {
+                return RedirectToAction("Index", "Home");
+            }
+			
 		}
 		[HttpPost]
 		[AllowAnonymous]
