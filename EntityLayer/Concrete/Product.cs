@@ -24,5 +24,6 @@ namespace EntityLayer.Concrete
         [Required(ErrorMessage = "Kategori ID gereklidir.")]
         public int CategoryId { get; set; }
         public Category Category { get; set; } = null!;
+        
     }
 }

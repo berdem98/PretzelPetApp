@@ -13,7 +13,11 @@ namespace PretzelPetApp.Controllers
 		[AllowAnonymous]
 		public IActionResult Index()
 		{
-			return View();
+            if(!User.Identity!.IsAuthenticated)
+            {
+                return View();
+            }
+			return RedirectToAction("Index","Home");
 		}
 		[HttpPost]
 		[AllowAnonymous]

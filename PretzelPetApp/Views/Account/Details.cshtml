@@ -16,11 +16,9 @@
                         <td><strong>Sipariş Tarihi:</strong>@Model.OrderDate.ToShortDateString()</td>
                     </tr>
                     <tr>
-                        <td><strong>Sipariş Tarihi:</strong> @Model.Adress</td>
+                        <td><strong>Sipariş Adresi:</strong> @Model.Adress</td>
                     </tr>
-                    <tr>
-                        <td><strong>Sipariş Tarihi:</strong> @Model.City</td>
-                    </tr>
+                    
                     <tr>
                         <strong>Sipariş Durumu:</strong> @if (Model.OrderState == EnumOrderState.Beklemede)
                         {
